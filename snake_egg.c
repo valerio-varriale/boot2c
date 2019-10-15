@@ -82,9 +82,9 @@ write_message(int interactive){
 
     if ( interactive == 0 )
     {
-        move_cursor((TEXT_WIDTH - len_a) / 2, TEXT_HEIGHT / 2 - 5);
+        move_cursor((TEXT_WIDTH-len_a)/2,TEXT_HEIGHT/2-5);
         put_string(" Postazione momentaneamente fuori servizio ");
-        move_cursor((TEXT_WIDTH - len_b) / 2, TEXT_HEIGHT / 2 + 5);
+        move_cursor((TEXT_WIDTH-len_b)/2,TEXT_HEIGHT/2+5);
         put_string(" Si prega di riavviare ");
         move_cursor(0, 0);
     } else {
@@ -92,11 +92,11 @@ write_message(int interactive){
         put_string(" SNAKE ");
         //move_cursor(((TEXT_WIDTH - 37) / 2) + 26, TEXT_HEIGHT / 2);
         //put_string(" ____ ");
-        move_cursor((TEXT_WIDTH - 37) / 2, (TEXT_HEIGHT / 2) + 1);
+        move_cursor((TEXT_WIDTH-37)/2,(TEXT_HEIGHT/2)+1);
         put_string("  ________________________/ o  \\___/ ");
-        move_cursor((TEXT_WIDTH - 37) / 2, (TEXT_HEIGHT / 2) + 2);
+        move_cursor((TEXT_WIDTH-37)/2,(TEXT_HEIGHT/2)+2);
         put_string(" <%%%%%%%%%%%%%%%%%%%%%%%%_____/   \\ ");
-        move_cursor(TEXT_WIDTH - 30, TEXT_HEIGHT - 1 );
+        move_cursor(TEXT_WIDTH-30,TEXT_HEIGHT-1);
         put_string(" Ricordarsi di riavviare ");
     }
 }
@@ -117,7 +117,7 @@ static void
 handle_kbd(enum dir prev_dir, enum dir *next_dir, int *interactive) {
     char sc = check_keystroke() ? (get_keystroke().scancode) : 0;
 
-    if (sc == 0x1f)  *interactive = 1;
+    if (sc == 0x1f) *interactive = 1;
     else if (*interactive > 0 && sc == SC_UP && prev_dir != DIR_DOWN) *next_dir = DIR_UP;
     else if (*interactive > 0 && sc == SC_DOWN && prev_dir != DIR_UP) *next_dir = DIR_DOWN;
     else if (*interactive > 0 && sc == SC_LEFT && prev_dir != DIR_RIGHT) *next_dir = DIR_LEFT;
@@ -169,7 +169,8 @@ move_snake(struct body *s, struct coords next_head)
 }
 
 static void
-reboot(void){
+reboot(void)
+{
 
     struct regs regs = {
         .dl = 0x00,
@@ -202,16 +203,15 @@ main(void)
 
         init_body(&body);
         draw_board();
-//      add_fruit();
         write_message(interactive);
 
-        for (i=0; i<100 || interactive != 0 ; i++) {
+        for (i=0;i<100||interactive!=0;i++) {
             /* TODO: Handle midnight overflow */
             uint32_t frame_end = get_time() + FRAME_TICKS;
 
             frame_end = get_time() + FRAME_TICKS;
 
-            if ( interactive == 1 ){
+            if (interactive == 1) {
                 init_body(&body);
                 draw_board();
                 add_fruit();
