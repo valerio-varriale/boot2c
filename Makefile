@@ -17,7 +17,7 @@ LDFLAGS = -Tlinker.ld -nostdlib -m elf_i386
 OBJDIR = build
 
 COMMON_OBJS = $(addprefix $(OBJDIR)/, intr.o bios.o util.o)
-BINS = $(addprefix $(OBJDIR)/,boot.bin hello.bin snake.bin hexview.bin)
+BINS = $(addprefix $(OBJDIR)/,boot.bin hello.bin snake.bin snake_egg.bin hexview.bin)
 DISK = $(OBJDIR)/disk.img
 
 .PHONY: clean disk ensure-app
