@@ -10,6 +10,8 @@
 #include "bios.h"
 
 /* Use 2 columns per 1 row, to achieve square blocks */
+#define TW (TEXT_WIDTH)
+#define TH (TEXT_HEIGHT)
 #define WIDTH  (TEXT_WIDTH / 2)
 #define HEIGHT (TEXT_HEIGHT)
 
@@ -78,25 +80,28 @@ static void
 write_message(int interactive){
     int len_a = 43;
     int len_b = 23;
-    // niente strlen
+    // niente strlen :(
 
-    if ( interactive == 0 )
+   if ( interactive == 0 )
     {
-        move_cursor((TEXT_WIDTH-len_a)/2,TEXT_HEIGHT/2-5);
+        // Non so ma non ho tempo adesso
+        fill_rect(0, (TH/2)-5-1, WIDTH, 3, PT_WALL);
+        move_cursor((TW-len_a)/2, (TH/2)-5);
         put_string(" Postazione momentaneamente fuori servizio ");
-        move_cursor((TEXT_WIDTH-len_b)/2,TEXT_HEIGHT/2+5);
+        fill_rect(0, (TH/2)+5-1, WIDTH, 3, PT_WALL); 
+        move_cursor((TW-len_b)/2, (TH/2)+5);
         put_string(" Si prega di riavviare ");
         move_cursor(0, 0);
     } else {
         move_cursor(4, 0);
-        put_string(" SNAKE ");
-        //move_cursor(((TEXT_WIDTH - 37) / 2) + 26, TEXT_HEIGHT / 2);
+        put_string(" A SNAKE EGG ");
+        //move_cursor(((TW - 37) / 2) + 26, TH / 2);
         //put_string(" ____ ");
-        move_cursor((TEXT_WIDTH-37)/2,(TEXT_HEIGHT/2)+1);
+        move_cursor((TW-37)/2, (TH/2)+1);
         put_string("  ________________________/ o  \\___/ ");
-        move_cursor((TEXT_WIDTH-37)/2,(TEXT_HEIGHT/2)+2);
+        move_cursor((TW-37)/2, (TH/2)+2);
         put_string(" <%%%%%%%%%%%%%%%%%%%%%%%%_____/   \\ ");
-        move_cursor(TEXT_WIDTH-30,TEXT_HEIGHT-1);
+        move_cursor(TW-30, TH-1);
         put_string(" Ricordarsi di riavviare ");
     }
 }
