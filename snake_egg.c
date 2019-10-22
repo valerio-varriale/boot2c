@@ -210,7 +210,7 @@ main(void)
         draw_board();
         write_message(interactive);
 
-        for (i=0;i<100||interactive!=0;i++) {
+        for (i=0;i<WIDTH*3||interactive!=0;i++) {
             /* TODO: Handle midnight overflow */
             uint32_t frame_end = get_time() + FRAME_TICKS;
 
