@@ -181,7 +181,9 @@ reboot(void)
         .dl = 0x00,
     };
     
-    move_cursor(0, 0); // futile
+    move_cursor(0, 0); // more or less useless
+
+    fill_rect(0, 0, WIDTH, HEIGHT, PT_WALL);
     
     *((uint16_t *) 0x472) = 0x0000; // cold boot
  
